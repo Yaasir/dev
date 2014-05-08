@@ -1,0 +1,51 @@
+﻿@model IEnumerable<OdeToFood.Models.RestaurantReview>
+
+@{
+    ViewBag.Title = "Index";
+    var first = Model.First();
+}
+
+<h2>The Latest Reviews</h2>
+
+
+<table>
+    <tr>
+        <th></th>
+        <th>
+            Body
+        </th>
+@*        <th>
+            Created
+        </th>*@
+        <th>
+            Rating
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+        <td>
+            @item.Body
+            @*@Html.Raw(item.Body)*@
+        </td>
+@*        <td>
+            @String.Format("{0:g}", item.Created)
+        </td>*@
+        <td>
+            @*@item.Rating*@
+            @(item.Rating / 10.0) @*Explicit code expression*@
+            @@twitterHandle
+        </td>
+    </tr>
+}
+
+</table>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>

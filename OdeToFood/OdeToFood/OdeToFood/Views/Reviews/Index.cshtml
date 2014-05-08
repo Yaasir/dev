@@ -1,0 +1,40 @@
+﻿@using OdeToFood.Infrastructure   @*namespace added in web.config in views folder for convenience.*@ 
+@model IEnumerable<OdeToFood.Models.RestaurantReview>
+
+@{
+    ViewBag.Title = "Index";
+    var first = Model.First();
+}
+
+<h2>The Latest Reviews</h2>
+
+@foreach (var item in Model)
+{
+    @*@:Review or <text>Review</text>*@
+    
+    //div below put in a patial View (separate file named _Review).
+    @*<div class="review">
+        <h4>@item.Restaurant.Name</h4>*@
+        @*<img src = "@item.Restaurant.ImageUrl" alt = "@item.Restaurant.Name" />*@
+       @* @Html.Image(item.Restaurant.ImageUrl, item.Restaurant.Name)*@
+       @* <span>Rating: @item.Rating</span>
+        <p>
+            @item.Body
+            <span class = "right">
+                @Html.ActionLink("Edit", "Edit", new { ID = item.ID })
+            </span>
+        </p>
+    </div> *@
+    
+    //render partial view _Review in this view.
+    @Html.Partial("_Review", item);
+
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@section Footer{
+    <p>This is the footer.</p>
+}
